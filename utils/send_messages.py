@@ -103,7 +103,7 @@ def send_messages(browser):
     logging.info("User selected option: [2] Send Message")
 
     logging.info("Authenticating user...")
-    is_auth = authenticate()
+    is_auth = authenticate(browser)
 
     if is_auth:
         logging.info("Making an API request to get phone numbers...")
@@ -112,9 +112,9 @@ def send_messages(browser):
         api_response = make_api_request(api_url)
 
         if api_response:
-            # phone_numbers = extract_phone_numbers(api_response)
+            phone_numbers = extract_phone_numbers(api_response)
             # phone_numbers = [{"phone": "+1 (530) 346-4533", "link": "vse-klienty.ru"}]
-            phone_numbers = [{"phone": "+1 (454) 444-4443", "link": "vse-klienty.ru"}]
+            # phone_numbers = [{"phone": "+1 (454) 444-4443", "link": "vse-klienty.ru"}]
 
             messenger = WhatsApp(browser)
 
@@ -129,6 +129,7 @@ def send_messages(browser):
                 print(f"Отправка сообщения на номер: {phone_number['phone']}")
 
                 messenger.find_user(phone_number['phone'])
+                time.sleep(5)
                 alert_status = check_alert(browser)
 
                 if alert_status:
@@ -151,7 +152,7 @@ def send_rechecks_message(browser):
     logging.info("User selected option: [3] Send Message")
 
     logging.info("Authenticating user...")
-    is_auth = authenticate()
+    is_auth = authenticate(browser)
 
     MAX_ATTEMPTS = 7
     TIME_INTERVALS = [3600, 7200, 86400, 259200, 604800, 2592000, 15552000]

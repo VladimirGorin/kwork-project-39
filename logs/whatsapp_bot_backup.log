@@ -1,7 +1,10 @@
-2023-12-03 13:39:20 - INFO - Script started
-2023-12-03 13:39:23 - INFO - User selected option: [3] Send Message
-2023-12-03 13:39:23 - INFO - Authenticating user...
-2023-12-03 13:39:23 - INFO - User chose option: [1] Authenticate
-2023-12-03 13:39:23 - INFO - 
+2023-12-03 14:52:38 - INFO - Script started
+2023-12-03 14:52:41 - INFO - User selected option: [2] Send Message
+2023-12-03 14:52:41 - INFO - Authenticating user...
+2023-12-03 14:52:42 - INFO - User chose option: [1] Authenticate
+2023-12-03 14:52:42 - INFO - 
 Session already exists.
-2023-12-03 13:39:26 - INFO - Script ended
+2023-12-03 14:52:42 - INFO - Making an API request to get phone numbers...
+2023-12-03 14:52:43 - INFO - Sending a message to the number: +1 (454) 444-4443
+2023-12-03 14:53:00 - INFO - Failed to send message because number not found: +1 (454) 444-4443
+2023-12-03 14:53:00 - INFO - Script ended

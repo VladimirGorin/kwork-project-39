@@ -39,13 +39,14 @@ try:
 
     choice = input("Выберите вариант (1, 2 или 3): ")
     browser = create_browser()
-    browser.set_window_position(-10000, 0)
-    
+
     if choice.isdigit():
         choice = int(choice)
+        if choice != 1:
+            browser.set_window_position(-10000, 0)
+
         if choice == 1:
-            browser.get("https://web.whatsapp.com/")
-            auth.authenticate()
+            auth.authenticate(browser)
 
         elif choice == 2:
             send_messages.send_messages(browser)
