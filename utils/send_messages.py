@@ -53,7 +53,7 @@ def send_file(browser, file_path):
                         )
                     )
     document_button.send_keys(file_name)
-    time.sleep(2)   
+    time.sleep(5)   
     browser.find_element(By.CSS_SELECTOR, 'span[data-icon="send"]').click()
     time.sleep(5)
 
@@ -112,8 +112,8 @@ def send_messages(browser):
         api_response = make_api_request(api_url)
 
         if api_response:
-            phone_numbers = extract_phone_numbers(api_response)
-            # phone_numbers = [{"phone": "+1 (530) 346-4533", "link": "vse-klienty.ru"}]
+            # phone_numbers = extract_phone_numbers(api_response)
+            phone_numbers = [{"phone": "+1 (530) 346-4533", "link": "vse-klienty.ru"}]
             # phone_numbers = [{"phone": "+1 (454) 444-4443", "link": "vse-klienty.ru"}]
 
             messenger = WhatsApp(browser)
@@ -129,7 +129,7 @@ def send_messages(browser):
                 print(f"Отправка сообщения на номер: {phone_number['phone']}")
 
                 messenger.find_user(phone_number['phone'])
-                time.sleep(5)
+                time.sleep(10)
                 alert_status = check_alert(browser)
 
                 if alert_status:

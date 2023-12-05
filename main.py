@@ -1,11 +1,12 @@
 import logging
-import shutil
+import shutil, os
 
 from selenium import webdriver
 import platform
 from selenium.webdriver.chrome.options import Options
 
 from utils import send_messages, auth
+
 
 shutil.copy2('./logs/whatsapp_bot.log', './logs/whatsapp_bot_backup.log')
 open('./logs/whatsapp_bot.log', 'w').close()
@@ -16,20 +17,20 @@ logging.info("Script started")
 def create_browser():
     system_platform = platform.system()
 
-    chrome_options = webdriver.ChromeOptions()
+    chrome_options = Options()
     chrome_options.add_argument("disable-gpu")
-    chrome_options.add_argument("start-maximized")
     chrome_options.add_argument("disable-infobars"); 
     chrome_options.add_argument("--disable-extensions")
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--no-sandbox")
 
+    full_path = os.path.abspath("sessions/whatsapp")
+    chrome_options.add_argument(f"user-data-dir={full_path}") 
+
     if system_platform == "Windows":
-        chrome_options.add_argument("user-data-dir=/sessions/whatsapp") 
         browser = webdriver.Chrome(options=chrome_options)
         return browser
     elif system_platform == "Linux":
-        chrome_options.add_argument("user-data-dir=sessions/whatsapp") 
         browser = webdriver.Chrome(options=chrome_options)
         return browser
     else:
@@ -44,7 +45,9 @@ try:
 
     choice = input("Выберите вариант (1, 2 или 3): ")
     browser = create_browser()
-    
+
+    browser.get("https://web.whatsapp.com/")
+
     if choice.isdigit():
         choice = int(choice)
         # if choice != 1:
@@ -67,7 +70,8 @@ try:
         logging.warning("User entered a non-numeric input")
 
 except Exception as e:
-    logging.error(f"An error occurred: {str(e)}", exc_info=True)
+    print(e)
+    # logging.error(f"An error occurred: {str(e)}", exc_info=True)
 
 finally:
     logging.info("Script ended")

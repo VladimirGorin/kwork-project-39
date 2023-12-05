@@ -1,18 +1,7 @@
-2023-12-05 12:19:36 - INFO - Script started
-2023-12-05 12:19:37 - INFO - User selected option: [2] Send Message
-2023-12-05 12:19:37 - INFO - Authenticating user...
-2023-12-05 12:19:37 - INFO - User chose option: [1] Authenticate
-2023-12-05 12:19:37 - INFO - 
-Session already exists.
-2023-12-05 12:19:37 - INFO - Making an API request to get phone numbers...
-2023-12-05 12:19:39 - INFO - Skipping message to 79149817189 as it already exists in the file.
-2023-12-05 12:19:39 - INFO - Sending a message to the number: 79066751786
-2023-12-05 12:19:48 - INFO - Failed to send message because number not found: 79066751786
-2023-12-05 12:19:48 - INFO - Sending a message to the number: 79041241320
-2023-12-05 12:20:12 - ERROR - TimeoutException: Element not found within the specified timeout.
-2023-12-05 12:20:12 - INFO - Message sent successfuly to 79041241320
-2023-12-05 12:20:12 - INFO - Message sent successfuly to 79041241320
-2023-12-05 12:20:12 - INFO - Message sent successfuly to 79041241320
-2023-12-05 12:20:12 - INFO - Message sent successfuly to 79041241320
-2023-12-05 12:20:13 - INFO - Message sent successfuly to 79041241320
-2023-12-05 12:20:18 - INFO - Script ended
+2023-12-05 15:30:01 - INFO - Script started
+2023-12-05 15:30:06 - INFO - User chose option: [1] Authenticate
+2023-12-05 15:30:06 - INFO - 
+Session not found.
+Scan the QR code.
+2023-12-05 15:33:49 - INFO - Session successfully saved.
+2023-12-05 15:33:49 - INFO - Script ended
