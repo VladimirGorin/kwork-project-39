@@ -16,7 +16,7 @@ logging.info("Script started")
 def create_browser():
     system_platform = platform.system()
 
-    chrome_options = Options()
+    chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument("user-data-dir=sessions/whatsapp") 
     chrome_options.add_argument("disable-gpu")
     chrome_options.add_argument("start-maximized")
@@ -27,7 +27,6 @@ def create_browser():
     chrome_options.add_argument("--no-sandbox")
 
     if system_platform == "Windows":
-        chrome_options.add_argument("webdriver.chrome.driver=chromedriver/windows/chromedriver.exe")
         browser = webdriver.Chrome(options=chrome_options)
         return browser
     elif system_platform == "Linux":
