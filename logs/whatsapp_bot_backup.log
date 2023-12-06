@@ -1,15 +1,2 @@
-2023-12-06 06:57:45 - INFO - Script started
-2023-12-06 06:57:50 - INFO - User selected option: [2] Send Message
-2023-12-06 06:57:50 - INFO - Authenticating user...
-2023-12-06 06:57:51 - INFO - User chose option: [1] Authenticate
-2023-12-06 06:57:51 - INFO - 
-Session already exists.
-2023-12-06 06:57:51 - INFO - Making an API request to get phone numbers...
-2023-12-06 06:57:52 - INFO - Sending a message to the number: 79680491491
-2023-12-06 06:58:17 - ERROR - TimeoutException: Element not found within the specified timeout.
-2023-12-06 06:58:17 - INFO - Failed to send message because number not found: 79680491491
-2023-12-06 06:58:17 - INFO - Sending a message to the number: 79652747619
-2023-12-06 06:58:22 - INFO - Sending a message to the number: 79667667340
-2023-12-06 06:58:27 - INFO - Sending a message to the number: 79836041303
-2023-12-06 06:58:32 - INFO - Sending a message to the number: 79149817189
-2023-12-06 06:58:33 - INFO - Script ended
+2023-12-06 12:55:46 - INFO - Script started
+2023-12-06 12:55:53 - INFO - Script ended

@@ -39,19 +39,20 @@ def create_browser():
 
 
 try:
-    internet_choice = print("\nВыберете скорость интернета\n[1] Быстрый интернет\n[2] Слабый интернет\n[3] Критичный интернет")
+    print("\n[1] Быстрый интернет\n[2] Слабый интернет\n[3] Критичный интернет")
+    internet_choice = input("\nВыберите вариант (1, 2 или 3): ")
     internet_speed = 0
 
     if internet_choice.isdigit():
         choice = int(internet_choice)
 
         if choice == 2:
-           internet_speed += 20
-           print("[+] 30 секунд к каждому таймеру\n")
+           internet_speed += 60
+           print("[+] 60 секунд к каждому таймеру\n")
 
         elif choice == 3:
-           internet_speed += 40
-           print("[+] 40 секунд к каждому таймеру\n")
+           internet_speed += 120
+           print("[+] 120 секунд к каждому таймеру\n")
 
         else:
             print("\nНеверный вариант. Пожалуйста, выберите 1, 2 или 3.\n")
