@@ -112,8 +112,8 @@ def send_messages(browser):
         api_response = make_api_request(api_url)
 
         if api_response:
-            # phone_numbers = extract_phone_numbers(api_response)
-            phone_numbers = [{"phone": "+1 (530) 346-4533", "link": "vse-klienty.ru"}]
+            phone_numbers = extract_phone_numbers(api_response)
+            # phone_numbers = [{"phone": "+1 (530) 346-4533", "link": "vse-klienty.ru"}]
             # phone_numbers = [{"phone": "+1 (454) 444-4443", "link": "vse-klienty.ru"}]
 
             messenger = WhatsApp(browser)
@@ -129,17 +129,23 @@ def send_messages(browser):
                 print(f"Отправка сообщения на номер: {phone_number['phone']}")
 
                 messenger.find_user(phone_number['phone'])
-                time.sleep(10)
-                alert_status = check_alert(browser)
+                try:
+                    WebDriverWait(browser, 20).until(
+                        EC.presence_of_element_located((By.XPATH, '//*[@id="main"]/footer/div/div/span[2]/div/div[2]/div/div/div'))
+                    )
+                except TimeoutException:
+                    logging.error("TimeoutException: Element not found within the specified timeout.")
+                    alert_status = check_alert(browser)
 
-                if alert_status:
-                    append_to_file(f"{phone_number['phone']}, {phone_number['link']}", "./data/user_rechecks.txt")
-                    logging.info(f"Failed to send message because number not found: {phone_number['phone']}")
-                    print(f"\nОтправка сообщения на номер не удалась потому что номер не найден: {phone_number['phone']}\n")
+                    if alert_status:
+                        append_to_file(f"{phone_number['phone']}, {phone_number['link']}", "./data/user_rechecks.txt")
+                        logging.info(f"Failed to send message because number not found: {phone_number['phone']}")
+                        print(f"\nОтправка сообщения на номер не удалась потому что номер не найден: {phone_number['phone']}\n")
 
-                    continue
+                        continue
 
                 send_message(browser, messenger, phone_number)
+
         else:
             logging.warning("No response from the API. Please check the API URL.")
             print("Нет ответа от API. Пожалуйста, проверьте URL API.")
