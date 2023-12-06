@@ -12,11 +12,11 @@ from alright import WhatsApp
 
 from utils.auth import authenticate
 
-def check_alert(browser):
+def check_alert(browser, internet_speed):
     popup_xpath = "//div[@data-animate-modal-popup]"
 
     try:
-        popup_element = WebDriverWait(browser, 15).until(EC.presence_of_element_located((By.XPATH, popup_xpath)))
+        popup_element = WebDriverWait(browser, 15 + internet_speed).until(EC.presence_of_element_located((By.XPATH, popup_xpath)))
 
         attribute_value = popup_element.get_attribute("data-animate-modal-popup")
 
@@ -31,10 +31,10 @@ def check_alert(browser):
         return False
 
 
-def send_file(browser, file_path):
+def send_file(browser, file_path, internet_speed):
     file_name = os.path.realpath(file_path)
 
-    clipButton = WebDriverWait(browser, 60).until(
+    clipButton = WebDriverWait(browser, 60 + internet_speed).until(
                         EC.presence_of_element_located(
                             (
                                 By.XPATH,
@@ -44,7 +44,7 @@ def send_file(browser, file_path):
                     )
     clipButton.click()
 
-    document_button = WebDriverWait(browser, 60).until(
+    document_button = WebDriverWait(browser, 60 + internet_speed).until(
                         EC.presence_of_element_located(
                             (
                                 By.XPATH,
@@ -57,7 +57,7 @@ def send_file(browser, file_path):
     browser.find_element(By.CSS_SELECTOR, 'span[data-icon="send"]').click()
     time.sleep(5)
 
-def send_message(browser, messenger, phone_number):
+def send_message(browser, messenger, phone_number, internet_speed):
     try:
         texts = [
             "Доброе утро/день/вечер!",
@@ -84,7 +84,7 @@ def send_message(browser, messenger, phone_number):
                 print(f"Не удалось отправить текст '{text}' на {phone_number['phone']}. Подробности см. в логах.")
 
         time.sleep(1)
-        send_file(browser, "./data/Определитель номеров для сайта.pdf")
+        send_file(browser, "./data/Определитель номеров для сайта.pdf", internet_speed)
 
         append_to_file(phone_number['phone'], "./data/temp_numbers.txt")
 
@@ -99,7 +99,7 @@ def send_message(browser, messenger, phone_number):
         logging.error(f"Failed to send text '{text}' to {phone_number['phone']}. Exception: {str(e)}")
         print(f"Не удалось отправить текст '{text}' на {phone_number['phone']}. Подробности см. в логах.")
 
-def send_messages(browser):
+def send_messages(browser, internet_speed):
     logging.info("User selected option: [2] Send Message")
 
     logging.info("Authenticating user...")
@@ -130,12 +130,12 @@ def send_messages(browser):
 
                 messenger.find_user(phone_number['phone'])
                 try:
-                    WebDriverWait(browser, 20).until(
+                    WebDriverWait(browser, 20 + internet_speed).until(
                         EC.presence_of_element_located((By.XPATH, '//*[@id="main"]/footer/div/div/span[2]/div/div[2]/div/div/div'))
                     )
                 except TimeoutException:
                     logging.error("TimeoutException: Element not found within the specified timeout.")
-                    alert_status = check_alert(browser)
+                    alert_status = check_alert(browser, internet_speed)
 
                     if alert_status:
                         append_to_file(f"{phone_number['phone']}, {phone_number['link']}", "./data/user_rechecks.txt")
@@ -144,7 +144,7 @@ def send_messages(browser):
 
                         continue
 
-                send_message(browser, messenger, phone_number)
+                send_message(browser, messenger, phone_number, internet_speed)
 
         else:
             logging.warning("No response from the API. Please check the API URL.")
@@ -154,7 +154,7 @@ def send_messages(browser):
         logging.warning("Authentication failed. Please authenticate first.")
         print("Аутентификация не удалась. Пожалуйста, пройдите аутентификацию перед отправкой сообщения.")
 
-def send_rechecks_message(browser):
+def send_rechecks_message(browser, internet_speed):
     logging.info("User selected option: [3] Send Message")
 
     logging.info("Authenticating user...")
@@ -175,15 +175,15 @@ def send_rechecks_message(browser):
 
                 print(f"Текущий номер телефона: {phone_number}")
                 messenger.find_user(phone_number)
-                time.sleep(5)
+                time.sleep(5 + internet_speed)
 
                 for attempt in range(1, MAX_ATTEMPTS + 1):
-                    alert_status = check_alert(browser)
+                    alert_status = check_alert(browser, internet_speed)
                     if alert_status:
                         print(f"Попытка {attempt} для номера телефона {phone_number} не удалась. Повтор через {TIME_INTERVALS[attempt - 1]} секунд.")
                         time.sleep(TIME_INTERVALS[attempt - 1])
                     else:
-                        send_message(browser, messenger, {"phone": phone_number, "link": link})
+                        send_message(browser, messenger, {"phone": phone_number, "link": link}, internet_speed)
                         print(f"\nСообщение успешно отправлено на номер {phone_number}.\n")
                         
                         phone_numbers.remove(entry)

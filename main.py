@@ -39,9 +39,29 @@ def create_browser():
 
 
 try:
-    print("\n[1] Авторизация")
-    print("[2] Отправка сообщений")
-    print("[3] Повторная проверка и отправка сообщения\n")
+    internet_choice = print("\nВыберете скорость интернета\n[1] Быстрый интернет\n[2] Слабый интернет\n[3] Критичный интернет")
+    internet_speed = 0
+
+    if internet_choice.isdigit():
+        choice = int(internet_choice)
+
+        if choice == 2:
+           internet_speed += 20
+           print("[+] 30 секунд к каждому таймеру\n")
+
+        elif choice == 3:
+           internet_speed += 40
+           print("[+] 40 секунд к каждому таймеру\n")
+
+        else:
+            print("\nНеверный вариант. Пожалуйста, выберите 1, 2 или 3.\n")
+            logging.warning("User entered an invalid option")
+    else:
+        print("\nНеверный ввод. Пожалуйста, введите число.\n")
+        logging.warning("User entered a non-numeric input")
+
+
+    print("\n[1] Авторизация\n[2] Отправка сообщений\n[3] Повторная проверка и отправка сообщения\n")
 
     choice = input("Выберите вариант (1, 2 или 3): ")
     browser = create_browser()
@@ -57,10 +77,10 @@ try:
             auth.authenticate(browser)
 
         elif choice == 2:
-            send_messages.send_messages(browser)
+            send_messages.send_messages(browser, internet_speed)
 
         elif choice == 3:
-            send_messages.send_rechecks_message(browser)
+            send_messages.send_rechecks_message(browser, internet_speed)
 
         else:
             print("\nНеверный вариант. Пожалуйста, выберите 1, 2 или 3.\n")
