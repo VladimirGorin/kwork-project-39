@@ -1,7 +1,6 @@
 import logging
-import time
-import os
-from datetime import datetime
+import time, os, re
+from datetime import datetime, timedelta
 import requests
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -9,9 +8,33 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import TimeoutException, NoSuchElementException, UnexpectedAlertPresentException
 from alright import WhatsApp
-
 from utils.auth import authenticate
 
+def is_time_old(time_str, months=2):
+    message_time = datetime.strptime(time_str, '%d.%m.%Y')
+
+    time_difference = datetime.now() - message_time
+
+    return time_difference > timedelta(days=months * 30)
+
+def get_chat_message(messages, phone_number):
+    last_four_numbers = phone_number[-4:]
+    for message in messages:
+        try:
+            sender = message["sender"]
+            time = message["time"]
+
+            clean_last_four_numbers = re.sub(r'\D', '', last_four_numbers)
+            clean_sender = re.sub(r'\D', '', sender)
+
+            if clean_sender in clean_last_four_numbers:
+                if is_time_old(time):
+                    return True
+
+        except (ValueError, KeyError, AttributeError):
+            continue
+
+    return False
 def check_alert(browser, internet_speed):
     popup_xpath = "//div[@data-animate-modal-popup]"
 
@@ -113,11 +136,8 @@ def send_messages(browser, internet_speed):
 
         if api_response:
             phone_numbers = extract_phone_numbers(api_response)
-            # phone_numbers = [{"phone": "+1 (530) 346-4533", "link": "vse-klienty.ru"}]
-            # phone_numbers = [{"phone": "+1 (454) 444-4443", "link": "vse-klienty.ru"}]
 
             messenger = WhatsApp(browser)
-
             existing_numbers = set(read_from_file("./data/temp_numbers.txt").split('\n'))
 
             for phone_number in phone_numbers:
@@ -143,8 +163,16 @@ def send_messages(browser, internet_speed):
                         print(f"\nОтправка сообщения на номер не удалась потому что номер не найден: {phone_number['phone']}\n")
 
                         continue
+                
+                messages = messenger.get_list_of_messages()
+                is_to_months_ago = get_chat_message(messages, phone_number['phone'])
 
-                send_message(browser, messenger, phone_number, internet_speed)
+                if not is_to_months_ago:
+                    send_message(browser, messenger, phone_number, internet_speed)
+                else:
+                    logging.info(f"Failed to send message because number not found: {phone_number['phone']}")
+                    print(f"\nОтправка сообщения на номер не удалась потому как последние сообщение 2 месяца назад: {phone_number['phone']}\n")
+                    continue
 
         else:
             logging.warning("No response from the API. Please check the API URL.")

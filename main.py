@@ -1,5 +1,5 @@
 import logging
-import shutil, os
+import shutil, os, sys
 
 from selenium import webdriver
 import platform
@@ -45,8 +45,10 @@ try:
 
     if internet_choice.isdigit():
         choice = int(internet_choice)
+        if choice == 1:
+           print("[+] Дефолтные таймеры\n")
 
-        if choice == 2:
+        elif choice == 2:
            internet_speed += 60
            print("[+] 60 секунд к каждому таймеру\n")
 
@@ -55,11 +57,12 @@ try:
            print("[+] 120 секунд к каждому таймеру\n")
 
         else:
-            print("\nНеверный вариант. Пожалуйста, выберите 1, 2 или 3.\n")
             logging.warning("User entered an invalid option")
+            sys.exit("\nНеверный вариант. Пожалуйста, выберите 1, 2 или 3.\n")
+            
     else:
-        print("\nНеверный ввод. Пожалуйста, введите число.\n")
         logging.warning("User entered a non-numeric input")
+        sys.exit("\nНеверный ввод. Пожалуйста, введите число.\n")
 
 
     print("\n[1] Авторизация\n[2] Отправка сообщений\n[3] Повторная проверка и отправка сообщения\n")
@@ -84,15 +87,15 @@ try:
             send_messages.send_rechecks_message(browser, internet_speed)
 
         else:
-            print("\nНеверный вариант. Пожалуйста, выберите 1, 2 или 3.\n")
             logging.warning("User entered an invalid option")
+            sys.exit("\nНеверный вариант. Пожалуйста, выберите 1, 2 или 3.\n")
     else:
-        print("\nНеверный ввод. Пожалуйста, введите число.\n")
         logging.warning("User entered a non-numeric input")
+        sys.exit("\nНеверный ввод. Пожалуйста, введите число.\n")
 
 except Exception as e:
-    print(e)
-    # logging.error(f"An error occurred: {str(e)}", exc_info=True)
+    logging.error(f"An error occurred: {str(e)}", exc_info=True)
+    sys.exit("Global error se more in logs")
 
 finally:
     logging.info("Script ended")

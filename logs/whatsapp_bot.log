@@ -1,2 +1,9 @@
-2023-12-06 12:55:54 - INFO - Script started
-2023-12-06 12:56:00 - INFO - Script ended
+2023-12-09 18:25:35 - INFO - Script started
+2023-12-09 18:25:38 - INFO - User selected option: [2] Send Message
+2023-12-09 18:25:38 - INFO - Authenticating user...
+2023-12-09 18:25:38 - INFO - User chose option: [1] Authenticate
+2023-12-09 18:25:38 - INFO - 
+Session already exists.
+2023-12-09 18:25:38 - INFO - Making an API request to get phone numbers...
+2023-12-09 18:25:39 - INFO - Sending a message to the number: +1 (530) 346-4533
+2023-12-09 18:25:58 - INFO - Script ended
