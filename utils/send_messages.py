@@ -20,6 +20,7 @@ def is_time_old(time_str, months=2):
 def get_chat_message(messages, phone_number):
     last_four_numbers = phone_number[-4:]
     for message in messages:
+
         try:
             sender = message["sender"]
             time = message["time"]
@@ -27,7 +28,7 @@ def get_chat_message(messages, phone_number):
             clean_last_four_numbers = re.sub(r'\D', '', last_four_numbers)
             clean_sender = re.sub(r'\D', '', sender)
 
-            if clean_sender in clean_last_four_numbers:
+            if clean_sender.endswith(clean_last_four_numbers):
                 # if is_time_old(time):
                 return True
 
@@ -262,7 +263,6 @@ def send_messages(browser, internet_speed):
                     is_to_months_ago = get_chat_message(messages, phone_number['phone'])
 
                     if not is_to_months_ago:
-
                         send_message(browser, messenger, phone_number, internet_speed)
                     else:
                         
