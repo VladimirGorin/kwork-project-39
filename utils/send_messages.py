@@ -28,8 +28,8 @@ def get_chat_message(messages, phone_number):
             clean_sender = re.sub(r'\D', '', sender)
 
             if clean_sender in clean_last_four_numbers:
-                if is_time_old(time):
-                    return True
+                # if is_time_old(time):
+                return True
 
         except (ValueError, KeyError, AttributeError):
             continue
@@ -44,6 +44,7 @@ def get_list_of_messages(browser, internet_speed):
                 (By.XPATH, '//*[@id="pane-side"]/div/div/div/div/child::div')
             )              
         )
+    
         # messages = WebDriverWait(browser, 15 + internet_speed).until(
         #     EC.presence_of_all_elements_located(
         #         (By.XPATH, '//*[@id="pane-side"]/div[2]/div/div/child::div')
@@ -229,7 +230,7 @@ def send_messages(browser, internet_speed):
 
         if api_response:
             phone_numbers = extract_phone_numbers(api_response)
-            # phone_numbers = [{"phone": "+79856918636", "link": "vse-klienty.ru"}]
+            # phone_numbers = [{"phone": "+9005455842585", "link": "vse-klienty.ru"}]
             messenger = WhatsApp(browser)
             existing_numbers = set(read_from_file("./data/temp_numbers.txt").split('\n'))
 
