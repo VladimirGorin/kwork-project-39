@@ -35,6 +35,90 @@ def get_chat_message(messages, phone_number):
             continue
 
     return False
+
+
+def get_list_of_messages(browser, internet_speed): 
+
+    messages = WebDriverWait(browser, 15 + internet_speed).until(
+            EC.presence_of_all_elements_located(
+                (By.XPATH, '//*[@id="pane-side"]/div/div/div/div/child::div')
+            )              
+        )
+        # messages = WebDriverWait(browser, 15 + internet_speed).until(
+        #     EC.presence_of_all_elements_located(
+        #         (By.XPATH, '//*[@id="pane-side"]/div[2]/div/div/child::div')
+        #     )               //*[@id="pane-side"]/div/div/div
+        # )
+    
+
+    clean_messages = []
+    for message in messages:
+            _message = message.text.split("\n")
+            if len(_message) == 2:
+                clean_messages.append(
+                    {
+                        "sender": _message[0],
+                        "time": _message[1],
+                        "message": "",
+                        "unread": False,
+                        "no_of_unread": 0,
+                        "group": False,
+                    }
+                )
+            elif len(_message) == 3:
+                clean_messages.append(
+                    {
+                        "sender": _message[0],
+                        "time": _message[1],
+                        "message": _message[2],
+                        "unread": False,
+                        "no_of_unread": 0,
+                        "group": False,
+                    }
+                )
+            elif len(_message) == 4:
+                clean_messages.append(
+                    {
+                        "sender": _message[0],
+                        "time": _message[1],
+                        "message": _message[2],
+                        "unread": _message[-1].isdigit(),
+                        "no_of_unread": int(_message[-1])
+                        if _message[-1].isdigit()
+                        else 0,
+                        "group": False,
+                    }
+                )
+            elif len(_message) == 5:
+                clean_messages.append(
+                    {
+                        "sender": _message[0],
+                        "time": _message[1],
+                        "message": "",
+                        "unread": _message[-1].isdigit(),
+                        "no_of_unread": int(_message[-1])
+                        if _message[-1].isdigit()
+                        else 0,
+                        "group": True,
+                    }
+                )
+            elif len(_message) == 6:
+                clean_messages.append(
+                    {
+                        "sender": _message[0],
+                        "time": _message[1],
+                        "message": _message[4],
+                        "unread": _message[-1].isdigit(),
+                        "no_of_unread": int(_message[-1])
+                        if _message[-1].isdigit()
+                        else 0,
+                        "group": True,
+                    }
+                )
+
+    return clean_messages
+
+
 def check_alert(browser, internet_speed):
     popup_xpath = "//div[@data-animate-modal-popup]"
 
@@ -67,14 +151,23 @@ def send_file(browser, file_path, internet_speed):
                     )
     clipButton.click()
 
+    # document_button = WebDriverWait(browser, 60 + internet_speed).until(
+    #                     EC.presence_of_element_located(
+    #                         (
+    #                             By.XPATH,
+    #                             '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/span/div/ul/div/div[1]/li/div/input',
+    #                         )
+    #                     )
+    #                 )
+
     document_button = WebDriverWait(browser, 60 + internet_speed).until(
-                        EC.presence_of_element_located(
-                            (
-                                By.XPATH,
-                                '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/span/div/ul/div/div[1]/li/div/input',
+                            EC.presence_of_element_located(
+                                (
+                                    By.XPATH,
+                                    '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[1]/div/div/span/div/ul/div/div[1]/li/div/input',
+                                )
                             )
                         )
-                    )
     document_button.send_keys(file_name)
     time.sleep(5)   
     browser.find_element(By.CSS_SELECTOR, 'span[data-icon="send"]').click()
@@ -136,7 +229,7 @@ def send_messages(browser, internet_speed):
 
         if api_response:
             phone_numbers = extract_phone_numbers(api_response)
-
+            # phone_numbers = [{"phone": "+79856918636", "link": "vse-klienty.ru"}]
             messenger = WhatsApp(browser)
             existing_numbers = set(read_from_file("./data/temp_numbers.txt").split('\n'))
 
@@ -145,10 +238,9 @@ def send_messages(browser, internet_speed):
                     logging.info(f"Skipping message to {phone_number['phone']} as it already exists in the file.")
                     continue
 
-                logging.info(f"Sending a message to the number: {phone_number['phone']}")
-                print(f"Отправка сообщения на номер: {phone_number['phone']}")
 
                 messenger.find_user(phone_number['phone'])
+
                 try:
                     WebDriverWait(browser, 20 + internet_speed).until(
                         EC.presence_of_element_located((By.XPATH, '//*[@id="main"]/footer/div/div/span[2]/div/div[2]/div/div/div'))
@@ -163,16 +255,24 @@ def send_messages(browser, internet_speed):
                         print(f"\nОтправка сообщения на номер не удалась потому что номер не найден: {phone_number['phone']}\n")
 
                         continue
-                
-                messages = messenger.get_list_of_messages()
-                is_to_months_ago = get_chat_message(messages, phone_number['phone'])
+                try:
+                    print(f"\nПроверка номера на диалог время ожидание ({15 + internet_speed}): {phone_number['phone']}\n")
+                    messages = get_list_of_messages(browser, internet_speed)
+                    is_to_months_ago = get_chat_message(messages, phone_number['phone'])
 
-                if not is_to_months_ago:
+                    if not is_to_months_ago:
+
+                        send_message(browser, messenger, phone_number, internet_speed)
+                    else:
+                        
+                        logging.info(f"Failed to send message because number not found: {phone_number['phone']}")
+                        print(f"\nОтправка сообщения на номер не удалась потому как последние сообщение 2 месяца назад: {phone_number['phone']}\n")
+                        continue
+
+                except TimeoutException:
+                    logging.error("TimeoutException: Element not found within the specified timeout.")
+                    print(f"\nДиалог с пользователем не найден продолжаем отправку: {phone_number['phone']}\n")
                     send_message(browser, messenger, phone_number, internet_speed)
-                else:
-                    logging.info(f"Failed to send message because number not found: {phone_number['phone']}")
-                    print(f"\nОтправка сообщения на номер не удалась потому как последние сообщение 2 месяца назад: {phone_number['phone']}\n")
-                    continue
 
         else:
             logging.warning("No response from the API. Please check the API URL.")
