@@ -152,67 +152,71 @@ def send_messages(browser, internet_speed):
         logging.info("Making an API request to get phone numbers...")
 
         while True:
-            print("Выполнение запроса API для получения номеров телефонов...")
-            api_url = "https://vmi458761.contaboserver.net/rept?token=ac7fa63332a1c87238af2cad5e8beae5"
-            api_response = make_api_request(api_url)
+            try:
+                print("Выполнение запроса API для получения номеров телефонов...")
+                api_url = "https://vmi458761.contaboserver.net/rept?token=ac7fa63332a1c87238af2cad5e8beae5"
+                api_response = make_api_request(api_url)
 
-            if api_response:
-                phone_numbers = extract_phone_numbers(api_response)
-                # phone_numbers = [{"phone": "+79037180516", "link": "vse-klienty.ru"}]
+                if api_response:
+                    phone_numbers = extract_phone_numbers(api_response)
+                    # phone_numbers = [{"phone": "+79037180516", "link": "vse-klienty.ru"}]
 
-                messenger = WhatsApp(browser)
-                existing_numbers = set(read_from_file("./data/temp_numbers.txt").split('\n'))
-                updated_numbers = find_unique_phones(phone_numbers, existing_numbers)
+                    messenger = WhatsApp(browser)
+                    existing_numbers = set(read_from_file("./data/temp_numbers.txt").split('\n'))
+                    updated_numbers = find_unique_phones(phone_numbers, existing_numbers)
 
-                for phone_number in updated_numbers:
-                    if phone_number['phone'] in existing_numbers:
-                        logging.info(f"Skipping message to {phone_number['phone']} as it already exists in the file.")
-                        continue
-
-
-                    messenger.find_user(phone_number['phone'])
-
-                    try:
-                        WebDriverWait(browser, 20 + internet_speed).until(
-                            EC.presence_of_element_located((By.XPATH, '//*[@id="main"]/footer/div/div/span[2]/div/div[2]/div/div/div'))
-                        )
-
-                    except TimeoutException:
-                        logging.error("TimeoutException: Element not found within the specified timeout.")
-                        alert_status = check_alert(browser, internet_speed)
-
-                        if alert_status:
-                            append_to_file(f"{phone_number['phone']}, {phone_number['link']}", "./data/user_rechecks.txt")
-                            logging.info(f"Failed to send message because number not found: {phone_number['phone']}")
-                            print(f"\nОтправка сообщения на номер не удалась потому что номер не найден: {phone_number['phone']}\n")
-
+                    for phone_number in updated_numbers:
+                        if phone_number['phone'] in existing_numbers:
+                            logging.info(f"Skipping message to {phone_number['phone']} as it already exists in the file.")
                             continue
-                    try:
-                        time.sleep(5)
-                        print(f"\nПроверка номера на диалог время ожидание ({15 + internet_speed}): {phone_number['phone']}\n")
-                        messages = get_list_of_messages(browser)
-                        is_to_months_ago = get_chat_message(messages)
 
-                        if not is_to_months_ago:
+
+                        messenger.find_user(phone_number['phone'])
+
+                        try:
+                            WebDriverWait(browser, 20 + internet_speed).until(
+                                EC.presence_of_element_located((By.XPATH, '//*[@id="main"]/footer/div/div/span[2]/div/div[2]/div/div/div'))
+                            )
+
+                        except TimeoutException:
+                            logging.error("TimeoutException: Element not found within the specified timeout.")
+                            alert_status = check_alert(browser, internet_speed)
+
+                            if alert_status:
+                                append_to_file(f"{phone_number['phone']}, {phone_number['link']}", "./data/user_rechecks.txt")
+                                logging.info(f"Failed to send message because number not found: {phone_number['phone']}")
+                                print(f"\nОтправка сообщения на номер не удалась потому что номер не найден: {phone_number['phone']}\n")
+
+                                continue
+                        try:
+                            time.sleep(5)
+                            print(f"\nПроверка номера на диалог время ожидание ({15 + internet_speed}): {phone_number['phone']}\n")
+                            messages = get_list_of_messages(browser)
+                            is_to_months_ago = get_chat_message(messages)
+
+                            if not is_to_months_ago:
+                                send_message(browser, messenger, phone_number, internet_speed)
+                            else:
+                                logging.info(f"Failed to send message because number not found: {phone_number['phone']}")
+                                print(f"\nОтправка сообщения на номер не удалась потому как последние сообщение 2 месяца назад: {phone_number['phone']}\n")
+                                append_to_file(phone_number['phone'], "./data/temp_numbers.txt")
+                                continue
+
+                        except TimeoutException:
+                            logging.error("TimeoutException: Element not found within the specified timeout.")
+                            print(f"\nДиалог с пользователем не найден продолжаем отправку: {phone_number['phone']}\n")
                             send_message(browser, messenger, phone_number, internet_speed)
-                        else:
-                            logging.info(f"Failed to send message because number not found: {phone_number['phone']}")
-                            print(f"\nОтправка сообщения на номер не удалась потому как последние сообщение 2 месяца назад: {phone_number['phone']}\n")
-                            append_to_file(phone_number['phone'], "./data/temp_numbers.txt")
-                            continue
 
-                    except TimeoutException:
-                        logging.error("TimeoutException: Element not found within the specified timeout.")
-                        print(f"\nДиалог с пользователем не найден продолжаем отправку: {phone_number['phone']}\n")
-                        send_message(browser, messenger, phone_number, internet_speed)
+                logging.info(f"Mailing completed. Re-sending in 5 minutes.")
+                print("Рассылка завершена. Повторная рассылка через 5 минут.") 
 
-            logging.info(f"Mailing completed. Re-sending in 5 minutes.")
-            print("Рассылка завершена. Повторная рассылка через 5 минут.") 
+                time.sleep(300)
 
-            time.sleep(300)
+                logging.info(f"We are sending again.")
+                print("Делаем повторную рассылку.") 
 
-            logging.info(f"We are sending again.")
-            print("Делаем повторную рассылку.") 
+            except Exception as e:
+                logging.error(f"An error occurred: {str(e)}", exc_info=True)
 
 
         else:
