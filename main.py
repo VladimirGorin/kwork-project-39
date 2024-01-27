@@ -40,8 +40,8 @@ print("\n[1] Быстрый интернет\n[2] Слабый интернет\
 internet_choice = input("\nВыберите вариант (1, 2 или 3): ")
 internet_speed = 0
 
+choice = int(internet_choice)
 if internet_choice.isdigit():
-    choice = int(internet_choice)
     if choice == 1:
         print("[+] Дефолтные таймеры\n")
 
