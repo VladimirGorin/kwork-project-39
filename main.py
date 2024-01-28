@@ -40,16 +40,16 @@ print("\n[1] Быстрый интернет\n[2] Слабый интернет\
 internet_choice = input("\nВыберите вариант (1, 2 или 3): ")
 internet_speed = 0
 
-choice = int(internet_choice)
 if internet_choice.isdigit():
-    if choice == 1:
+    internet_choice = int(internet_choice)
+    if internet_choice == 1:
         print("[+] Дефолтные таймеры\n")
 
-    elif choice == 2:
+    elif internet_choice == 2:
         internet_speed += 60
         print("[+] 60 секунд к каждому таймеру\n")
 
-    elif choice == 3:
+    elif internet_choice == 3:
         internet_speed += 120
         print("[+] 120 секунд к каждому таймеру\n")
 
@@ -69,7 +69,7 @@ browser = create_browser()
 
 browser.get("https://web.whatsapp.com/")
 
-def run():
+def run(choice):
     if choice.isdigit():
         choice = int(choice)
         # if choice != 1:
@@ -93,11 +93,11 @@ def run():
 
 
 try:
-    run()
+    run(choice)
 except Exception as e:
     logging.error(f"An error occurred: {str(e)}", exc_info=True)
     browser.refresh()
-    run()
+    run(choice)
 
     # sys.exit("Global error se more in logs")
 

@@ -1,14 +1,5 @@
-2023-12-12 22:41:28 - INFO - Script started
-2023-12-12 22:41:29 - INFO - User selected option: [2] Send Message
-2023-12-12 22:41:29 - INFO - Authenticating user...
-2023-12-12 22:41:30 - INFO - User chose option: [1] Authenticate
-2023-12-12 22:41:30 - INFO - 
-Session already exists.
-2023-12-12 22:41:30 - INFO - Making an API request to get phone numbers...
-2023-12-12 22:41:50 - INFO - Failed to send message because number not found: +79037180516
-2023-12-12 22:41:50 - INFO - Mailing completed. Re-sending in 5 minutes.
-2023-12-12 22:46:50 - INFO - We are sending again.
-2023-12-12 22:46:50 - INFO - Mailing completed. Re-sending in 5 minutes.
-2023-12-12 22:51:50 - INFO - We are sending again.
-2023-12-12 22:51:51 - INFO - Mailing completed. Re-sending in 5 minutes.
-2023-12-12 22:53:42 - INFO - Script ended
+2024-01-28 03:47:55 - INFO - Script started
+2024-01-28 03:47:59 - INFO - User chose option: [1] Authenticate
+2024-01-28 03:47:59 - INFO - 
+Session not found.
+Scan the QR code.

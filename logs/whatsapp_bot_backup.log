@@ -1,16 +1,6 @@
-2023-12-12 22:41:07 - INFO - Script started
-2023-12-12 22:41:09 - INFO - User selected option: [2] Send Message
-2023-12-12 22:41:09 - INFO - Authenticating user...
-2023-12-12 22:41:09 - INFO - User chose option: [1] Authenticate
-2023-12-12 22:41:09 - INFO - 
-Session already exists.
-2023-12-12 22:41:09 - INFO - Making an API request to get phone numbers...
-2023-12-12 22:41:10 - ERROR - An error occurred: 'phone'
-Traceback (most recent call last):
-  File "/home/heso/Desktop/projects/andreytukalov/whatsapp_bot/main.py", line 85, in <module>
-    send_messages.send_messages(browser, internet_speed)
-  File "/home/heso/Desktop/projects/andreytukalov/whatsapp_bot/utils/send_messages.py", line 169, in send_messages
-    if phone_number['phone'] in existing_numbers:
-       ~~~~~~~~~~~~^^^^^^^^^
-KeyError: 'phone'
-2023-12-12 22:41:10 - INFO - Script ended
+2024-01-28 03:47:38 - INFO - Script started
+2024-01-28 03:47:40 - INFO - User chose option: [1] Authenticate
+2024-01-28 03:47:40 - INFO - 
+Session not found.
+Scan the QR code.
+2024-01-28 03:47:48 - INFO - Script ended

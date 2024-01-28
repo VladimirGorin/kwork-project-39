@@ -1,0 +1,24 @@
+[17371:17371:0128/034757.268052:WARNING:chrome_main_delegate.cc(668)] This is Chrome version 121.0.6167.85 (not a warning)
+[17371:17371:0128/034757.289608:INFO:policy_logger.cc(144)] :components/policy/core/common/config_dir_policy_loader.cc(118) Skipping mandatory platform policies because no policy file was found at: /etc/opt/chrome/policies/managed
+[17371:17371:0128/034757.289631:INFO:policy_logger.cc(144)] :components/policy/core/common/config_dir_policy_loader.cc(118) Skipping recommended platform policies because no policy file was found at: /etc/opt/chrome/policies/recommended
+[17371:17371:0128/034757.346103:ERROR:atom_cache.cc(224)] Add _ICC_PROFILE_1 to kAtomsToCache
+[17371:17371:0128/034757.348933:INFO:policy_logger.cc(144)] :components/enterprise/browser/controller/chrome_browser_cloud_management_controller.cc(168) Starting CBCM Controller Initialization
+[17371:17371:0128/034757.348963:INFO:policy_logger.cc(144)] :components/enterprise/browser/controller/chrome_browser_cloud_management_controller.cc(196) No machine level policy manager exists.
+[17371:17371:0128/034757.442889:WARNING:bluez_dbus_manager.cc(248)] Floss manager not present, cannot set Floss enable/disable.
+[17371:17371:0128/034757.588282:ERROR:object_proxy.cc(576)] Failed to call method: org.freedesktop.ScreenSaver.GetActive: object_path= /org/freedesktop/ScreenSaver: org.freedesktop.DBus.Error.NotSupported: This method is not implemented
+[17408:17408:0128/034757.780287:WARNING:sandbox_linux.cc(418)] InitializeSandbox() called with multiple threads in process gpu-process.
+[17371:17371:0128/034757.878926:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'ambient-light-sensor'.", source:  (0)
+[17371:17371:0128/034757.878988:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'bluetooth'.", source:  (0)
+[17371:17371:0128/034759.148494:INFO:CONSOLE(215)] "Another connection wants to delete database 'wawc'. Closing db now to resume the delete request.", source: https://web.whatsapp.com/serviceworker.js (215)
+[17371:17371:0128/034759.148588:INFO:CONSOLE(215)] "Another connection wants to delete database 'wawc'. Closing db now to resume the delete request.", source: https://web.whatsapp.com/serviceworker.js (215)
+[17371:17371:0128/034759.440148:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'ambient-light-sensor'.", source:  (0)
+[17371:17371:0128/034759.440199:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'bluetooth'.", source:  (0)
+[17371:17371:0128/034807.884357:WARNING:controller_impl.cc(1190)] Background download complete, client: 6, completion type: 0, file size:265059
+[17371:17371:0128/034808.030074:WARNING:controller_impl.cc(1190)] Background download complete, client: 6, completion type: 0, file size:5087
+[17371:17371:0128/034809.136825:WARNING:controller_impl.cc(1190)] Background download complete, client: 6, completion type: 0, file size:883094
+[17371:17371:0128/034810.878194:WARNING:controller_impl.cc(1190)] Background download complete, client: 6, completion type: 0, file size:2222106
+[17371:17371:0128/034811.060130:WARNING:controller_impl.cc(1190)] Background download complete, client: 6, completion type: 0, file size:45116
+[17371:17371:0128/034813.285298:WARNING:controller_impl.cc(1190)] Background download complete, client: 6, completion type: 0, file size:2746900
+[17371:17371:0128/034813.441584:WARNING:controller_impl.cc(1190)] Background download complete, client: 6, completion type: 0, file size:3844
+[17371:17371:0128/034815.003673:WARNING:controller_impl.cc(1190)] Background download complete, client: 6, completion type: 0, file size:1463571
+[17371:17371:0128/034823.807084:WARNING:controller_impl.cc(1190)] Background download complete, client: 6, completion type: 0, file size:33994661
