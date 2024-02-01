@@ -143,7 +143,7 @@ def find_unique_phones(array1, array2):
     return unique_array
 
 
-def send_messages(browser, internet_speed):
+def send_messages(browser, internet_speed, create_browser=None):
     logging.info("User selected option: [2] Send Message")
 
     logging.info("Authenticating user...")
@@ -223,6 +223,14 @@ def send_messages(browser, internet_speed):
                 print("\nReload browser in 10 second. Wait\n")
                 time.sleep(10)
                 browser.refresh()
+
+
+            browser.quit()
+            logging.info(f"Перезапускаю браузер.")
+            browser = create_browser()
+            browser.get("https://web.whatsapp.com/")
+            logging.info(f"Продолжаем работу.")
+
     else:
         logging.warning("Authentication failed. Please authenticate first.")
         print("Аутентификация не удалась. Пожалуйста, пройдите аутентификацию перед отправкой сообщения.")

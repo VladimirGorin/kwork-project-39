@@ -1,5 +1,7 @@
 import logging
-import shutil, os, sys
+import shutil
+import os
+import sys
 
 from selenium import webdriver
 import platform
@@ -11,8 +13,10 @@ from utils import send_messages, auth
 shutil.copy2('./logs/whatsapp_bot.log', './logs/whatsapp_bot_backup.log')
 open('./logs/whatsapp_bot.log', 'w').close()
 
-logging.basicConfig(filename='./logs/whatsapp_bot.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+logging.basicConfig(filename='./logs/whatsapp_bot.log', level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
 logging.info("Script started")
+
 
 def create_browser(no_headless=False):
     system_platform = platform.system()
@@ -24,8 +28,8 @@ def create_browser(no_headless=False):
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--no-sandbox")
 
-    if no_headless:
-        chrome_options.add_argument("--headless")
+    # if no_headless:
+    #     chrome_options.add_argument("--headless")
 
     full_path = os.path.abspath("sessions/whatsapp")
     chrome_options.add_argument(f"user-data-dir={full_path}")
@@ -38,6 +42,7 @@ def create_browser(no_headless=False):
         return browser
     else:
         raise Exception("Unsupported operating system")
+
 
 print("\n[1] Быстрый интернет\n[2] Слабый интернет\n[3] Критичный интернет")
 internet_choice = input("\nВыберите вариант (1, 2 или 3): ")
@@ -74,11 +79,12 @@ if choice != 1:
     browser = create_browser(no_headless=True)
     browser.get("https://web.whatsapp.com/")
 
+
 def run(choice):
     if choice.isdigit():
         choice = int(choice)
         # if choice != 1:
-           # browser.set_window_position(-10000, 0)
+        # browser.set_window_position(-10000, 0)
 
         if choice == 1:
             browser = create_browser()
@@ -93,7 +99,7 @@ def run(choice):
 
         if choice == 2:
 
-            send_messages.send_messages(browser, internet_speed)
+            send_messages.send_messages(browser, internet_speed, create_browser)
 
         elif choice == 3:
             send_messages.send_rechecks_message(browser, internet_speed)

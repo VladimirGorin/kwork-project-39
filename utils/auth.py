@@ -25,6 +25,7 @@ def check_auth():
         logging.info("\nSession already exists.")
         return True
 
+
 def authenticate(browser):
     browser.get("https://web.whatsapp.com/")
     logging.info("User chose option: [1] Authenticate")
