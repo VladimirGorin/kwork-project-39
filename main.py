@@ -74,11 +74,8 @@ print("\n[1] Авторизация\n[2] Отправка сообщений\n[3
 
 choice = input("Выберите вариант (1, 2 или 3): ")
 
-
-if choice != 1:
-    browser = create_browser(no_headless=True)
-    browser.get("https://web.whatsapp.com/")
-
+browser = create_browser()
+browser.get("https://web.whatsapp.com/")
 
 def run(choice):
     if choice.isdigit():
@@ -87,15 +84,7 @@ def run(choice):
         # browser.set_window_position(-10000, 0)
 
         if choice == 1:
-            browser = create_browser()
-            browser.get("https://web.whatsapp.com/")
-
             auth.authenticate(browser)
-            browser.quit()
-            return
-
-        browser = create_browser(no_headless=True)
-        browser.get("https://web.whatsapp.com/")
 
         if choice == 2:
 
