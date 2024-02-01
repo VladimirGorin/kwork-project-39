@@ -19,10 +19,11 @@ def create_browser():
 
     chrome_options = Options()
     chrome_options.add_argument("disable-gpu")
-    chrome_options.add_argument("disable-infobars");
+    chrome_options.add_argument("disable-infobars")
     chrome_options.add_argument("--disable-extensions")
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--headless")
 
     full_path = os.path.abspath("sessions/whatsapp")
     chrome_options.add_argument(f"user-data-dir={full_path}")
