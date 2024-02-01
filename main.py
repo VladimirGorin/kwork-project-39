@@ -14,7 +14,7 @@ open('./logs/whatsapp_bot.log', 'w').close()
 logging.basicConfig(filename='./logs/whatsapp_bot.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
 logging.info("Script started")
 
-def create_browser():
+def create_browser(no_headless=False):
     system_platform = platform.system()
 
     chrome_options = Options()
@@ -23,7 +23,9 @@ def create_browser():
     chrome_options.add_argument("--disable-extensions")
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--no-sandbox")
-    chrome_options.add_argument("--headless")
+
+    if no_headless:
+        chrome_options.add_argument("--headless")
 
     full_path = os.path.abspath("sessions/whatsapp")
     chrome_options.add_argument(f"user-data-dir={full_path}")
@@ -66,9 +68,11 @@ else:
 print("\n[1] Авторизация\n[2] Отправка сообщений\n[3] Повторная проверка и отправка сообщения\n")
 
 choice = input("Выберите вариант (1, 2 или 3): ")
-browser = create_browser()
 
-browser.get("https://web.whatsapp.com/")
+
+if choice != 1:
+    browser = create_browser(no_headless=True)
+    browser.get("https://web.whatsapp.com/")
 
 def run(choice):
     if choice.isdigit():
@@ -77,9 +81,18 @@ def run(choice):
            # browser.set_window_position(-10000, 0)
 
         if choice == 1:
-            auth.authenticate(browser)
+            browser = create_browser()
+            browser.get("https://web.whatsapp.com/")
 
-        elif choice == 2:
+            auth.authenticate(browser)
+            browser.quit()
+            return
+
+        browser = create_browser(no_headless=True)
+        browser.get("https://web.whatsapp.com/")
+
+        if choice == 2:
+
             send_messages.send_messages(browser, internet_speed)
 
         elif choice == 3:
@@ -102,5 +115,5 @@ except Exception as e:
 
     # sys.exit("Global error se more in logs")
 
-finally:
-    logging.info("Script ended")
+# finally:
+#     logging.info("Script ended")

@@ -1,0 +1,10 @@
+[90998:90998:0201/094909.282190:WARNING:chrome_main_delegate.cc(668)] This is Chrome version 121.0.6167.85 (not a warning)
+[90998:90998:0201/094909.305513:INFO:policy_logger.cc(144)] :components/policy/core/common/config_dir_policy_loader.cc(118) Skipping mandatory platform policies because no policy file was found at: /etc/opt/chrome/policies/managed
+[90998:90998:0201/094909.305544:INFO:policy_logger.cc(144)] :components/policy/core/common/config_dir_policy_loader.cc(118) Skipping recommended platform policies because no policy file was found at: /etc/opt/chrome/policies/recommended
+[90998:90998:0201/094909.393150:ERROR:atom_cache.cc(224)] Add _ICC_PROFILE_1 to kAtomsToCache
+[90998:90998:0201/094909.397663:INFO:policy_logger.cc(144)] :components/enterprise/browser/controller/chrome_browser_cloud_management_controller.cc(168) Starting CBCM Controller Initialization
+[90998:90998:0201/094909.397705:INFO:policy_logger.cc(144)] :components/enterprise/browser/controller/chrome_browser_cloud_management_controller.cc(196) No machine level policy manager exists.
+[90998:90998:0201/094909.559835:WARNING:bluez_dbus_manager.cc(248)] Floss manager not present, cannot set Floss enable/disable.
+[90998:90998:0201/094909.608803:ERROR:object_proxy.cc(576)] Failed to call method: org.freedesktop.ScreenSaver.GetActive: object_path= /org/freedesktop/ScreenSaver: org.freedesktop.DBus.Error.NotSupported: This method is not implemented
+[91037:91061:0201/094909.751144:WARNING:sqlite_persistent_store_backend_base.cc(197)] Failed to post task from LoadNelPoliciesAndNotifyInBackground@net/extras/sqlite/sqlite_persistent_reporting_and_nel_store.cc:1324 to client_task_runner_.
+[90998:90998:0201/094909.774019:WARNING:pref_notifier_impl.cc(41)] Pref observer for media_router.cast_allow_all_ips found at shutdown.
