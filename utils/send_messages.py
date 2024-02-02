@@ -154,6 +154,7 @@ def send_messages(browser, internet_speed, create_browser=None):
 
         while True:
             try:
+                browser.refresh()
                 print("Выполнение запроса API для получения номеров телефонов...")
                 api_url = "https://vmi458761.contaboserver.net/rept?token=ac7fa63332a1c87238af2cad5e8beae5"
                 api_response = make_api_request(api_url)
@@ -172,8 +173,8 @@ def send_messages(browser, internet_speed, create_browser=None):
                             continue
 
 
+                        browser.refresh()
                         messenger.find_user(phone_number['phone'])
-
                         try:
                             WebDriverWait(browser, 20 + internet_speed).until(
                                 EC.presence_of_element_located((By.XPATH, '//*[@id="main"]/footer/div/div/span[2]/div/div[2]/div/div/div'))

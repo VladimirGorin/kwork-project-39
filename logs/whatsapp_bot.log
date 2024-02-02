@@ -1,1 +1,62 @@
-2024-02-01 10:29:02 - INFO - Script started
+2024-02-01 18:03:24 - INFO - Script started
+2024-02-01 18:03:33 - INFO - User selected option: [2] Send Message
+2024-02-01 18:03:33 - INFO - Authenticating user...
+2024-02-01 18:03:33 - ERROR - An error occurred: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=121.0.6167.85)
+Stacktrace:
+#0 0x5565149a5d93 <unknown>
+#1 0x556514689337 <unknown>
+#2 0x55651465fa18 <unknown>
+#3 0x5565146ffead <unknown>
+#4 0x556514715a95 <unknown>
+#5 0x5565146f71e3 <unknown>
+#6 0x5565146c7135 <unknown>
+#7 0x5565146c813e <unknown>
+#8 0x556514969e4b <unknown>
+#9 0x55651496ddfa <unknown>
+#10 0x5565149566d5 <unknown>
+#11 0x55651496ea6f <unknown>
+#12 0x55651493a69f <unknown>
+#13 0x556514993098 <unknown>
+#14 0x556514993262 <unknown>
+#15 0x5565149a4f34 <unknown>
+#16 0x7fcc76094ac3 <unknown>
+Traceback (most recent call last):
+  File "/home/heso/Desktop/projects/andreytukalov/whatsapp_bot/main.py", line 105, in <module>
+    run(choice)
+  File "/home/heso/Desktop/projects/andreytukalov/whatsapp_bot/main.py", line 91, in run
+    send_messages.send_messages(browser, internet_speed, create_browser)
+  File "/home/heso/Desktop/projects/andreytukalov/whatsapp_bot/utils/send_messages.py", line 150, in send_messages
+    is_auth = authenticate(browser)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/heso/Desktop/projects/andreytukalov/whatsapp_bot/utils/auth.py", line 30, in authenticate
+    browser.get("https://web.whatsapp.com/")
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 356, in get
+    self.execute(Command.GET, {"url": url})
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 347, in execute
+    self.error_handler.check_response(response)
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchWindowException: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=121.0.6167.85)
+Stacktrace:
+#0 0x5565149a5d93 <unknown>
+#1 0x556514689337 <unknown>
+#2 0x55651465fa18 <unknown>
+#3 0x5565146ffead <unknown>
+#4 0x556514715a95 <unknown>
+#5 0x5565146f71e3 <unknown>
+#6 0x5565146c7135 <unknown>
+#7 0x5565146c813e <unknown>
+#8 0x556514969e4b <unknown>
+#9 0x55651496ddfa <unknown>
+#10 0x5565149566d5 <unknown>
+#11 0x55651496ea6f <unknown>
+#12 0x55651493a69f <unknown>
+#13 0x556514993098 <unknown>
+#14 0x556514993262 <unknown>
+#15 0x5565149a4f34 <unknown>
+#16 0x7fcc76094ac3 <unknown>
+
