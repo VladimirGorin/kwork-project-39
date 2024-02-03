@@ -154,7 +154,10 @@ def send_messages(browser, internet_speed, create_browser=None):
 
         while True:
             try:
-                browser.refresh()
+                browser.quit()
+                logging.info("Выходим и заходим в браузер")
+                browser.get("https://web.whatsapp.com/")
+
                 print("Выполнение запроса API для получения номеров телефонов...")
                 api_url = "https://vmi458761.contaboserver.net/rept?token=ac7fa63332a1c87238af2cad5e8beae5"
                 api_response = make_api_request(api_url)
@@ -173,7 +176,9 @@ def send_messages(browser, internet_speed, create_browser=None):
                             continue
 
 
-                        browser.refresh()
+                        browser.quit()
+                        logging.info("Выходим и заходим в браузер")
+                        browser.get("https://web.whatsapp.com/")
                         messenger.find_user(phone_number['phone'])
                         try:
                             WebDriverWait(browser, 20 + internet_speed).until(
@@ -223,7 +228,10 @@ def send_messages(browser, internet_speed, create_browser=None):
                 logging.error(f"An error occurred: {str(e)}", exc_info=True)
                 print("\nReload browser in 10 second. Wait\n")
                 time.sleep(10)
-                browser.refresh()
+                browser.quit()
+                logging.info("Выходим и заходим в браузер")
+                browser.get("https://web.whatsapp.com/")
+
 
 
             browser.quit()
