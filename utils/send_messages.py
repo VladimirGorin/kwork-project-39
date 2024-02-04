@@ -154,10 +154,6 @@ def send_messages(browser, internet_speed, create_browser=None):
 
         while True:
             try:
-                browser.quit()
-                logging.info("Выходим и заходим в браузер")
-                browser.get("https://web.whatsapp.com/")
-
                 print("Выполнение запроса API для получения номеров телефонов...")
                 api_url = "https://vmi458761.contaboserver.net/rept?token=ac7fa63332a1c87238af2cad5e8beae5"
                 api_response = make_api_request(api_url)
@@ -166,7 +162,6 @@ def send_messages(browser, internet_speed, create_browser=None):
                     phone_numbers = extract_phone_numbers(api_response)
                     # phone_numbers = [{"phone": "+79037180516", "link": "vse-klienty.ru"}]
 
-                    messenger = WhatsApp(browser)
                     existing_numbers = set(read_from_file("./data/temp_numbers.txt").split('\n'))
                     updated_numbers = find_unique_phones(phone_numbers, existing_numbers)
 
@@ -175,10 +170,14 @@ def send_messages(browser, internet_speed, create_browser=None):
                             logging.info(f"Skipping message to {phone_number['phone']} as it already exists in the file.")
                             continue
 
-
                         browser.quit()
-                        logging.info("Выходим и заходим в браузер")
+                        browser = create_browser()
                         browser.get("https://web.whatsapp.com/")
+
+                        messenger = WhatsApp(browser)
+
+                        print("Выходим и заходим в браузер")
+                        logging.info("Выходим и заходим в браузер")
                         messenger.find_user(phone_number['phone'])
                         try:
                             WebDriverWait(browser, 20 + internet_speed).until(
@@ -226,19 +225,11 @@ def send_messages(browser, internet_speed, create_browser=None):
 
             except Exception as e:
                 logging.error(f"An error occurred: {str(e)}", exc_info=True)
-                print("\nReload browser in 10 second. Wait\n")
-                time.sleep(10)
                 browser.quit()
+                print("Выходим и заходим в браузер")
                 logging.info("Выходим и заходим в браузер")
                 browser.get("https://web.whatsapp.com/")
 
-
-
-            browser.quit()
-            logging.info(f"Перезапускаю браузер.")
-            browser = create_browser()
-            browser.get("https://web.whatsapp.com/")
-            logging.info(f"Продолжаем работу.")
 
     else:
         logging.warning("Authentication failed. Please authenticate first.")

@@ -27,6 +27,7 @@ def create_browser(no_headless=False):
     chrome_options.add_argument("--disable-extensions")
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument('--disable-blink-features=AutomationControlled')
 
     # if no_headless:
     #     chrome_options.add_argument("--headless")
@@ -77,6 +78,7 @@ choice = input("Выберите вариант (1, 2 или 3): ")
 browser = create_browser()
 browser.get("https://web.whatsapp.com/")
 
+
 def run(choice):
     if choice.isdigit():
         choice = int(choice)
@@ -87,7 +89,6 @@ def run(choice):
             auth.authenticate(browser)
 
         if choice == 2:
-
             send_messages.send_messages(browser, internet_speed, create_browser)
 
         elif choice == 3:

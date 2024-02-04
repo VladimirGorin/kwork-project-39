@@ -1,7 +1,253 @@
-2024-02-01 18:02:31 - INFO - Script started
-2024-02-01 18:02:44 - INFO - User chose option: [1] Authenticate
-2024-02-01 18:02:44 - INFO - 
-Session not found.
-Scan the QR code.
-2024-02-01 18:03:01 - INFO - Session successfully saved.
-2024-02-01 18:03:01 - WARNING - User entered an invalid option
+2024-02-04 18:03:23 - INFO - Script started
+2024-02-04 18:03:26 - INFO - User selected option: [2] Send Message
+2024-02-04 18:03:26 - INFO - Authenticating user...
+2024-02-04 18:03:26 - INFO - User chose option: [1] Authenticate
+2024-02-04 18:03:26 - INFO - 
+Session already exists.
+2024-02-04 18:03:26 - INFO - Making an API request to get phone numbers...
+2024-02-04 18:03:30 - INFO - Выходим и заходим в браузер
+2024-02-04 18:03:30 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fedabdae030>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/bb1c4bd0292fe8ba3322a609309d179d/url
+2024-02-04 18:03:30 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fedabdaeff0>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/bb1c4bd0292fe8ba3322a609309d179d/url
+2024-02-04 18:03:30 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fedabdaf1d0>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/bb1c4bd0292fe8ba3322a609309d179d/url
+2024-02-04 18:03:30 - ERROR - An error occurred: HTTPConnectionPool(host='localhost', port=54049): Max retries exceeded with url: /session/bb1c4bd0292fe8ba3322a609309d179d/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fedabdaf4d0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Traceback (most recent call last):
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/connection.py", line 203, in _new_conn
+    sock = connection.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/connectionpool.py", line 496, in _make_request
+    conn.request(
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/connection.py", line 395, in request
+    self.endheaders()
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/http/client.py", line 1314, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/http/client.py", line 1074, in _send_output
+    self.send(msg)
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/http/client.py", line 1018, in send
+    self.connect()
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/connection.py", line 243, in connect
+    self.sock = self._new_conn()
+                ^^^^^^^^^^^^^^^^
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/connection.py", line 218, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7fedabdaf4d0>: Failed to establish a new connection: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/heso/Desktop/projects/andreytukalov/whatsapp_bot/utils/send_messages.py", line 180, in send_messages
+    messenger.find_user(phone_number['phone'])
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/alright/__init__.py", line 141, in find_user
+    self.browser.get(link)
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 356, in get
+    self.execute(Command.GET, {"url": url})
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 345, in execute
+    response = self.command_executor.execute(driver_command, params)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/selenium/webdriver/remote/remote_connection.py", line 302, in execute
+    return self._request(command_info[0], url, body=data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/selenium/webdriver/remote/remote_connection.py", line 322, in _request
+    response = self._conn.request(method, url, body=body, headers=headers)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/_request_methods.py", line 118, in request
+    return self.request_encode_body(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/_request_methods.py", line 217, in request_encode_body
+    return self.urlopen(method, url, **extra_kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/poolmanager.py", line 444, in urlopen
+    response = conn.urlopen(method, u.request_uri, **kw)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/connectionpool.py", line 874, in urlopen
+    return self.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/connectionpool.py", line 874, in urlopen
+    return self.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/connectionpool.py", line 874, in urlopen
+    return self.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/connectionpool.py", line 844, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/util/retry.py", line 515, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=54049): Max retries exceeded with url: /session/bb1c4bd0292fe8ba3322a609309d179d/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fedabdaf4d0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2024-02-04 18:03:30 - INFO - Выходим и заходим в браузер
+2024-02-04 18:03:30 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fedabdaf3e0>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/7a81a335a746c9103fc2f27bc13802d2/url
+2024-02-04 18:03:30 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fedabdaf9e0>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/7a81a335a746c9103fc2f27bc13802d2/url
+2024-02-04 18:03:30 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fedabc68350>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/7a81a335a746c9103fc2f27bc13802d2/url
+2024-02-04 18:03:30 - ERROR - An error occurred: HTTPConnectionPool(host='localhost', port=34639): Max retries exceeded with url: /session/7a81a335a746c9103fc2f27bc13802d2/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fedabc68530>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Traceback (most recent call last):
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/connection.py", line 203, in _new_conn
+    sock = connection.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/connectionpool.py", line 496, in _make_request
+    conn.request(
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/connection.py", line 395, in request
+    self.endheaders()
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/http/client.py", line 1314, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/http/client.py", line 1074, in _send_output
+    self.send(msg)
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/http/client.py", line 1018, in send
+    self.connect()
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/connection.py", line 243, in connect
+    self.sock = self._new_conn()
+                ^^^^^^^^^^^^^^^^
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/connection.py", line 218, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7fedabdaf4d0>: Failed to establish a new connection: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/heso/Desktop/projects/andreytukalov/whatsapp_bot/utils/send_messages.py", line 180, in send_messages
+    messenger.find_user(phone_number['phone'])
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/alright/__init__.py", line 141, in find_user
+    self.browser.get(link)
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 356, in get
+    self.execute(Command.GET, {"url": url})
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 345, in execute
+    response = self.command_executor.execute(driver_command, params)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/selenium/webdriver/remote/remote_connection.py", line 302, in execute
+    return self._request(command_info[0], url, body=data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/selenium/webdriver/remote/remote_connection.py", line 322, in _request
+    response = self._conn.request(method, url, body=body, headers=headers)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/_request_methods.py", line 118, in request
+    return self.request_encode_body(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/_request_methods.py", line 217, in request_encode_body
+    return self.urlopen(method, url, **extra_kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/poolmanager.py", line 444, in urlopen
+    response = conn.urlopen(method, u.request_uri, **kw)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/connectionpool.py", line 874, in urlopen
+    return self.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/connectionpool.py", line 874, in urlopen
+    return self.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/connectionpool.py", line 874, in urlopen
+    return self.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/connectionpool.py", line 844, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/util/retry.py", line 515, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=54049): Max retries exceeded with url: /session/bb1c4bd0292fe8ba3322a609309d179d/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fedabdaf4d0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/connection.py", line 203, in _new_conn
+    sock = connection.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/connectionpool.py", line 496, in _make_request
+    conn.request(
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/connection.py", line 395, in request
+    self.endheaders()
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/http/client.py", line 1314, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/http/client.py", line 1074, in _send_output
+    self.send(msg)
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/http/client.py", line 1018, in send
+    self.connect()
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/connection.py", line 243, in connect
+    self.sock = self._new_conn()
+                ^^^^^^^^^^^^^^^^
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/connection.py", line 218, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7fedabc68530>: Failed to establish a new connection: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/heso/Desktop/projects/andreytukalov/whatsapp_bot/main.py", line 106, in <module>
+    run(choice)
+  File "/home/heso/Desktop/projects/andreytukalov/whatsapp_bot/main.py", line 92, in run
+    send_messages.send_messages(browser, internet_speed, create_browser)
+  File "/home/heso/Desktop/projects/andreytukalov/whatsapp_bot/utils/send_messages.py", line 230, in send_messages
+    browser.get("https://web.whatsapp.com/")
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 356, in get
+    self.execute(Command.GET, {"url": url})
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 345, in execute
+    response = self.command_executor.execute(driver_command, params)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/selenium/webdriver/remote/remote_connection.py", line 302, in execute
+    return self._request(command_info[0], url, body=data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/selenium/webdriver/remote/remote_connection.py", line 322, in _request
+    response = self._conn.request(method, url, body=body, headers=headers)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/_request_methods.py", line 118, in request
+    return self.request_encode_body(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/_request_methods.py", line 217, in request_encode_body
+    return self.urlopen(method, url, **extra_kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/poolmanager.py", line 444, in urlopen
+    response = conn.urlopen(method, u.request_uri, **kw)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/connectionpool.py", line 874, in urlopen
+    return self.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/connectionpool.py", line 874, in urlopen
+    return self.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/connectionpool.py", line 874, in urlopen
+    return self.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/connectionpool.py", line 844, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/home/heso/.pyenv/versions/3.12.0/lib/python3.12/site-packages/urllib3/util/retry.py", line 515, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=34639): Max retries exceeded with url: /session/7a81a335a746c9103fc2f27bc13802d2/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fedabc68530>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2024-02-04 18:03:30 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fedabc687d0>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/bb1c4bd0292fe8ba3322a609309d179d/refresh
+2024-02-04 18:03:30 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fedabc689e0>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/bb1c4bd0292fe8ba3322a609309d179d/refresh
+2024-02-04 18:03:30 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fedabc68c80>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/bb1c4bd0292fe8ba3322a609309d179d/refresh
