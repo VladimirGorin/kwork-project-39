@@ -225,12 +225,6 @@ def send_messages(browser, internet_speed, create_browser=None):
 
             except Exception as e:
                 logging.error(f"An error occurred: {str(e)}", exc_info=True)
-                browser.quit()
-                print("Выходим и заходим в браузер")
-                logging.info("Выходим и заходим в браузер")
-                browser.get("https://web.whatsapp.com/")
-
-
     else:
         logging.warning("Authentication failed. Please authenticate first.")
         print("Аутентификация не удалась. Пожалуйста, пройдите аутентификацию перед отправкой сообщения.")
