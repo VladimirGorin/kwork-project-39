@@ -145,8 +145,11 @@ def find_unique_phones(array1, array2):
 
 def send_messages(browser, internet_speed, create_browser=None):
     logging.info("User selected option: [2] Send Message")
-
+    version = "1.0.0"
     logging.info("Authenticating user...")
+    print(f"\nВерсия программы: {version}\n")
+    logging.info(f"Version {version}")
+
     is_auth = authenticate(browser)
 
     if is_auth:
