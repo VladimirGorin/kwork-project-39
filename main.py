@@ -83,7 +83,7 @@ def run(choice):
     if choice.isdigit():
         choice = int(choice)
         # if choice != 1:
-        # browser.set_window_position(-10000, 0)
+        browser.set_window_position(-10000, 0)
 
         if choice == 1:
             auth.authenticate(browser)
