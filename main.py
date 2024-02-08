@@ -35,14 +35,13 @@ def create_browser(no_headless=False):
     full_path = os.path.abspath("sessions/whatsapp")
     chrome_options.add_argument(f"user-data-dir={full_path}")
 
-    if system_platform == "Windows":
-        browser = webdriver.Chrome(options=chrome_options)
-        return browser
-    elif system_platform == "Linux":
-        browser = webdriver.Chrome(options=chrome_options)
-        return browser
-    else:
-        raise Exception("Unsupported operating system")
+
+    browser = webdriver.Chrome(options=chrome_options)
+    browser.set_window_position(-10000, 0)
+    return browser
+
+    # else:
+    #     raise Exception("Unsupported operating system")
 
 
 print("\n[1] Быстрый интернет\n[2] Слабый интернет\n[3] Критичный интернет")
@@ -82,8 +81,6 @@ browser.get("https://web.whatsapp.com/")
 def run(choice):
     if choice.isdigit():
         choice = int(choice)
-        # if choice != 1:
-        browser.set_window_position(-10000, 0)
 
         if choice == 1:
             auth.authenticate(browser)
