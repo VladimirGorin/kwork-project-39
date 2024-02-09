@@ -37,7 +37,11 @@ def create_browser(no_headless=False):
 
 
     browser = webdriver.Chrome(options=chrome_options)
-    browser.set_window_position(-10000, 0)
+
+    # if(no_headless):
+
+    #     browser.set_window_position(-10000, 0)
+
     return browser
 
     # else:
